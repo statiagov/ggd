@@ -1,0 +1,17 @@
+= simple_form_for(@inspection, :html => one_submit_only, url: inspections_path, :remote => true) do |f|
+  = link_to_close new_inspection_path
+
+  = f.error_messages :object_name => t('inspection')
+
+  = render "inspections/top_section", :f => f
+  -#= render "fields/edit_custom_field_group", :f => f
+  -#= render "shared/add_comment", :f => f
+  -#= render "inspections/objectives",  :f => f
+  -#= render "fields/groups",         :f => f
+  -#= render "entities/permissions",  :f => f, :entity => @inspection
+  = hook(:entity_form, self, {f: f, entity: @inspection})
+
+  .buttonbar
+    = f.submit t(:create_inspection)
+    #{t :or}
+    = link_to_cancel new_inspection_path

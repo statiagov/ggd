@@ -1,0 +1,20 @@
+%li.highlight[inspection]
+  .strip{:class => inspection.state_machine.current_state}= t(inspection.state_machine.current_state)
+
+  %ul.tools
+    -#- if can?(:update, campaign)
+    %li= link_to_edit(inspection)
+
+    -#- if can?(:destroy, campaign)
+    %li= link_to_delete(inspection)
+
+  .indent
+    = link_to(inspection.inspection_number, inspection)
+    = render "inspections/status", :inspection => inspection
+
+    = render "inspections/metrics", :inspection => inspection
+    -#- if campaign.tag_list.present?
+      %dt
+        .tags= tags_for_index(campaign)
+
+    = hook(:inspection_bottom, self, :inspection => inspection)

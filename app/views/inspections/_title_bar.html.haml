@@ -1,0 +1,21 @@
+- model_name = controller_name.singularize
+- model_klass = model_name.camelcase.constantize
+
+.title_tools
+  #buttons
+    = view_buttons
+  .create_asset
+    .btn-group
+      %button.btn.btn-sm.btn-default.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+        Inspection Actions
+        %span.caret
+      %ul.dropdown-menu
+        %li
+          %a{:href => "#"} Schedule
+        %li
+          %a{:href => "#"} Schedule & Complete
+
+.title
+  %span{:id => "create_#{model_name}_title"} #{t controller_name.to_sym}
+  = image_tag("loading.gif", :size => :thumb, :id => "loading", :style => "display: none;")
+

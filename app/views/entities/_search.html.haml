@@ -1,0 +1,11 @@
+#search
+  .tabs
+    %ul
+      %li
+        = link_to t('search'), '#',    :"data-search-form" => "basic_search",    :class => (params[:q]  ? "" : " active")
+
+    #search_results_count
+      = t('search_results_count', :count => @search_results_count)
+
+  .search_form#basic_search{ :style => (params[:q] ? 'display: none;' : '') }
+    = render "basic_search"

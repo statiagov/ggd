@@ -1,0 +1,10 @@
+- info = []
+- info << t(:establishment_name, inspection.facility.establishment.name)
+- unless info.empty?
+  %dt
+    %strong #{t :estbalishment}:
+    = info.join(" | ")
+%dt
+  - unless info.empty?
+    %b #{t :facility}:
+  = t(:facility_name, inspection.facility.location)

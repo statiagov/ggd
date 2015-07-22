@@ -1,0 +1,18 @@
+= styles_for :inspection
+
+= render 'entities/title_bar'
+
+.remote#create_inspection{ hidden }
+
+= render 'search'
+
+.remote#options{ hidden }
+
+.list#inspections
+  - if @inspections.any?
+    = render @inspections
+  - else
+    = render "shared/empty"
+
+#paginate= render "shared/paginate_with_per_page"
+#export= render "shared/export"

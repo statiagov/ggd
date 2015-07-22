@@ -1,0 +1,14 @@
+%tt
+  - case inspection.state_machine.current_state.to_sym
+    - when :scheduled
+      - if inspection.start_date
+        = t(:scheduled_ago, time_ago_in_words(inspection.start_date))
+        - if inspection.end_date
+          - if inspection.end_date > Date.today
+            %span>= ", " + t(:finishes_in, distance_of_time_in_words(Date.today, inspection.end_date))
+          - else
+            %span.warn= "(" + t(:was_supposed_to_finish, campaign.ends_on.strftime('%b %e, %Y')) + ")"
+      - else
+        %span.warn> #{t :no_start_date}
+    - when :completed
+      = t(:finished_on, campaign.ends_on.strftime('%b %e, %Y')) if inspection.end_date

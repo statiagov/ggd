@@ -1,0 +1,15 @@
+%li.highlight[inspection]
+  .strip{:class => inspection.state_machine.current_state}= t(inspection.state_machine.current_state)
+
+  %ul.tools
+    -#- if can?(:update, inspection)
+    %li= link_to_edit(inspection)
+
+    -#- if can?(:destroy, inspection)
+    %li= link_to_delete(inspection)
+
+  .indent
+    = link_to(inspection.inspection_number, inspection)
+    = render "inspections/status", :inspection => inspection
+
+    = hook(:inspection_bottom, self, :inspection => inspection)
